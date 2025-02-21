@@ -1,32 +1,17 @@
 import 'package:flutter/material.dart';
+import './screens/boot_screen.dart';
 
 void main() {
-  runApp(MyApp());  // This runs the app
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
-class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Demo Home Page'),
-      ),
-      body: Center(
-        child: Text('Hello, World!'),
-      ),
+    return const MaterialApp(
+      home: BootScreen(),
     );
   }
 }
