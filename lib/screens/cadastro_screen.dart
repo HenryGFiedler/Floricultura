@@ -1,3 +1,4 @@
+import 'package:floricultura/components/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:floricultura/components/text_input_validation.dart';
 
@@ -87,7 +88,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
               ),
               SizedBox(height: 25),
 
-              ElevatedButton(
+              MainButton(
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     ScaffoldMessenger.of(
@@ -95,7 +96,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ).showSnackBar(SnackBar(content: Text('Cadastro realizado com sucesso')));
                   }
                 },
-                child: Text('Cadastrar'),
+                text: 'Cadastrar',
               ),
             ],
           ),
