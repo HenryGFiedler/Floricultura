@@ -1,5 +1,5 @@
+import 'package:floricultura/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'cadastro_screen.dart';
 
 class BootScreen extends StatelessWidget {
   const BootScreen({super.key});
@@ -9,7 +9,7 @@ class BootScreen extends StatelessWidget {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => CadastroScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
 

@@ -11,7 +11,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -52,53 +53,60 @@ class _CadastroScreenState extends State<CadastroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Cadastro')),
-      body: Padding(
-        padding: const EdgeInsets.all(50),
-        child: Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextInputValidation(
-                controller: nameController,
-                hintText: 'Nome',
-                validator: _validateName,
-              ),
-              SizedBox(height: 15),
-              TextInputValidation(
-                controller: emailController,
-                hintText: 'Email',
-                validator: _validateEmail,
-              ),
-              SizedBox(height: 15),
-              TextInputValidation(
-                controller: passwordController,
-                hintText: 'Senha',
-                obscureText: true,
-                validator: _validatePassword,
-              ),
-              SizedBox(height: 15),
-              TextInputValidation(
-                controller: confirmPasswordController,
-                hintText: 'Confirmar senha',
-                obscureText: true,
-                validator: _validateConfirmPassword,
-              ),
-              SizedBox(height: 25),
+      appBar: AppBar(
+        title: Text('Cadastro'),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextInputValidation(
+                  controller: nameController,
+                  hintText: 'Nome',
+                  validator: _validateName,
+                ),
+                SizedBox(height: 15),
+                TextInputValidation(
+                  controller: emailController,
+                  hintText: 'Email',
+                  validator: _validateEmail,
+                ),
+                SizedBox(height: 15),
+                TextInputValidation(
+                  controller: passwordController,
+                  hintText: 'Senha',
+                  obscureText: true,
+                  validator: _validatePassword,
+                ),
+                SizedBox(height: 15),
+                TextInputValidation(
+                  controller: confirmPasswordController,
+                  hintText: 'Confirmar senha',
+                  obscureText: true,
+                  validator: _validateConfirmPassword,
+                ),
+                SizedBox(height: 25),
 
-              MainButton(
-                onPressed: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(SnackBar(content: Text('Cadastro realizado com sucesso')));
-                  }
-                },
-                text: 'Cadastrar',
-              ),
-            ],
+                MainButton(
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Cadastro realizado com sucesso'),
+                        ),
+                      );
+                    }
+                  },
+                  text: 'Cadastrar',
+                ),
+              ],
+            ),
           ),
         ),
       ),
