@@ -10,7 +10,7 @@ class TextInputValidation extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.obscureText = false,
-    this.validator
+    this.validator,
   });
 
   @override
@@ -20,8 +20,15 @@ class TextInputValidation extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: hintText,
-        border: OutlineInputBorder(),
         contentPadding: const EdgeInsets.all(12),
+        fillColor: Colors.white,
+        filled: true,
+        isDense: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
       validator: validator,
     );

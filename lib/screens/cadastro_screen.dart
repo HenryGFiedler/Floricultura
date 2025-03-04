@@ -53,15 +53,14 @@ class _CadastroScreenState extends State<CadastroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cadastro'),
-      ),
+      appBar: AppBar(),
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(50),
           child: Form(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.onUnfocus,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -91,7 +90,6 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   validator: _validateConfirmPassword,
                 ),
                 SizedBox(height: 25),
-
                 MainButton(
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {

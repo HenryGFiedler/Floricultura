@@ -35,71 +35,86 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(50),
-          child: Form(
-            autovalidateMode: AutovalidateMode.onUnfocus,
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TextInputValidation(
-                  controller: emailController,
-                  hintText: 'Email',
-                  validator: _validateEmail,
-                ),
-                SizedBox(height: 15),
-                TextInputValidation(
-                  controller: passwordController,
-                  hintText: 'Senha',
-                  validator: _validatePassword,
-                  obscureText: true,
-                ),
-                SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                  ).copyWith(splashFactory: NoSplash.splashFactory),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Esqueci minha senha',
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+      backgroundColor: Color(0xB8F87C8A),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(50, 0, 50, 50),
+            child: Form(
+              autovalidateMode: AutovalidateMode.onUnfocus,
+              key: _formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                MainButton(
-                  text: 'Login',
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      ScaffoldMessenger.of(context).clearSnackBars();
-                      if (emailController.text == 'a@' &&
-                          passwordController.text == 'b') {
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(SnackBar(content: Text('Login feito')));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Email ou senha incorretos')),
-                        );
+                  TextInputValidation(
+                    controller: emailController,
+                    hintText: 'Email',
+                    validator: _validateEmail,
+                  ),
+                  SizedBox(height: 15),
+                  TextInputValidation(
+                    controller: passwordController,
+                    hintText: 'Senha',
+                    validator: _validatePassword,
+                    obscureText: true,
+                  ),
+                  SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    ).copyWith(splashFactory: NoSplash.splashFactory),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Esqueci minha senha',
+                        style: TextStyle(
+                          color: Colors.grey.shade400,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                  MainButton(
+                    text: 'Login',
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        if (emailController.text == 'a@' &&
+                            passwordController.text == 'b') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Login feito')),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Email ou senha incorretos'),
+                            ),
+                          );
+                        }
                       }
-                    }
-                  },
-                ),
-                SizedBox(height: 15),
-                MainButton(
-                  text: 'Cadastrar',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CadastroScreen()),
-                    );
-                  },
-                ),
-              ],
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  MainButton(
+                    text: 'Cadastrar',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CadastroScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
