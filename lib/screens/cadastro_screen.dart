@@ -53,17 +53,25 @@ class _CadastroScreenState extends State<CadastroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: Colors.transparent,),
+      backgroundColor: Color(0xB8F87C8A),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(50),
+          padding: const EdgeInsets.fromLTRB(50, 0, 50, 50),
           child: Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUnfocus,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 TextInputValidation(
                   controller: nameController,
                   hintText: 'Nome',
