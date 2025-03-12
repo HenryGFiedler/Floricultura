@@ -16,6 +16,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final FocusNode emailFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    // Dar foco automaticamente ao campo de email quando a tela for carregada
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(emailFocusNode);
+    });
+  }
+
+  @override
+  void dispose() {
+    emailFocusNode
+        .dispose(); // Dispose do FocusNode quando não for mais necessário
+    super.dispose();
+  }
+
   String? _validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return 'Campo de senha vazio';
@@ -55,20 +73,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextInputValidation(
                     controller: emailController,
                     hintText: 'Email',
+                    keyboardType: TextInputType.emailAddress,
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15,),
                   TextInputValidation(
                     controller: passwordController,
                     hintText: 'Senha',
+                    keyboardType: TextInputType.visiblePassword,
                     validator: _validatePassword,
                     obscureText: true,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 15,),
                   TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 10),
+                      overlayColor: Colors.transparent,
                     ).copyWith(splashFactory: NoSplash.splashFactory),
                     child: Align(
                       alignment: Alignment.centerLeft,
