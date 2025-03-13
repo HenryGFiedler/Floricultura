@@ -1,6 +1,7 @@
 import 'package:floricultura/components/main_button.dart';
 import 'package:floricultura/components/text_input_validation.dart';
 import 'package:floricultura/screens/cadastro_screen.dart';
+import 'package:floricultura/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,8 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    emailFocusNode
-        .dispose(); // Dispose do FocusNode quando não for mais necessário
+    emailFocusNode.dispose(); // Dispose do FocusNode quando não for mais necessário
     super.dispose();
   }
 
@@ -65,10 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: Image.asset(
-                      "assets/images/logo.png",
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.asset("assets/images/logo.png", fit: BoxFit.cover),
                   ),
                   TextInputValidation(
                     controller: emailController,
@@ -76,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.emailAddress,
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   TextInputValidation(
                     controller: passwordController,
                     hintText: 'Senha',
@@ -84,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: _validatePassword,
                     obscureText: true,
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
@@ -95,10 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Esqueci minha senha',
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 13,
-                        ),
+                        style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
                       ),
                     ),
                   ),
@@ -107,17 +101,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         ScaffoldMessenger.of(context).clearSnackBars();
-                        if (emailController.text == 'a@' &&
-                            passwordController.text == 'b') {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Login feito')),
+                        if (emailController.text == 'a@' && passwordController.text == 'b') {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text('Login feito')));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainScreen()),
                           );
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Email ou senha incorretos'),
-                            ),
-                          );
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text('Email ou senha incorretos')));
                         }
                       }
                     },
@@ -128,9 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => CadastroScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => CadastroScreen()),
                       );
                     },
                   ),
