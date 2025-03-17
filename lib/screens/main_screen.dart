@@ -37,18 +37,18 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: screen,
       drawer: Drawer(
-        child: ListView(
-          children: [
-            for (var entry in MenuItemModel.menuItems.asMap().entries)
-              ListTile(
-                leading: Icon(entry.value.icon),
-                title: Text(entry.value.title),
-                onTap: () {
-                  _mudarTela(entry.key);
-                  Navigator.pop(context);
-                },
-              ),
-          ],
+        child: ListView.builder(
+          itemCount: MenuItemModel.menuItems.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Icon(MenuItemModel.menuItems[index].icon),
+                  title: Text(MenuItemModel.menuItems[index].title),
+                  onTap: () {
+                    _mudarTela(index);
+                    Navigator.pop(context);
+                  },
+                );
+              }
         ),
       ),
     );
