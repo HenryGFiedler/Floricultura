@@ -1,3 +1,4 @@
+import 'package:floricultura/components/info_card.dart';
 import 'package:flutter/material.dart';
 import '../components/menu_item.dart';
 
@@ -9,7 +10,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Widget screen = Container();
+  Widget screen = Container(
+    child: InfoCard(),
+  );
 
   void _mudarTela(int index) {
     setState(() {
