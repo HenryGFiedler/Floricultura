@@ -5,77 +5,184 @@ class InfoCard extends StatelessWidget {
   final String titulo;
   final String descricao;
   final DateTime data;
-  final IconData icon; // TODO imagem do widget se for necessário, se não pode ser um ícone opcional
+  final IconData
+  icon; // TODO imagem do widget se for necessário, se não pode ser um ícone opcional.
 
   const InfoCard({
     super.key,
     this.titulo = '',
     this.descricao = '',
     required this.data,
-    required this.icon
+    required this.icon,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Color(0xFFFFEFFC),
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                offset: Offset(0, 5),
-                blurRadius: 4.0,
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+  void showFullScreen(
+    BuildContext context,
+    String titulo,
+    String descricao,
+    DateTime data,
+    IconData icon,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Color(0xFFFFEFFC),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          insetPadding: EdgeInsets.all(0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: MediaQuery.of(context).size.width * 0.9,
+              maxWidth: MediaQuery.of(context).size.width * 0.9,
+              minHeight: MediaQuery.of(context).size.height * 0.7,
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: Stack(
               children: [
-                SizedBox(height: 100, width: 100, child: Icon(icon, size: 70,)),
-                Expanded(
+                Padding(
+                  padding: EdgeInsets.all(20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFffd9f8),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: SizedBox(height: 150, width: 150, child: Icon(icon, size: 100)),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: SizedBox(
+                              height: 150,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 10, left: 5),
+                                    child: Text(
+                                      titulo,
+                                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: 5),
+                                      child: Text(
+                                        DateFormat('dd/MM/yyyy').format(data),
+                                        style: TextStyle(fontSize: 25),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Divider(height: 30),
                       Padding(
-                        padding: EdgeInsets.only(top: 10, left: 5),
-                        child: Text(
-                          titulo,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              descricao,
+                              style: TextStyle(fontSize: 15, color: Colors.grey.shade800),
+                            ),
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 5, left: 5),
-                        child: Text(descricao,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 12, color: Colors.grey)),
+                      SizedBox(
+                        height: 100,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // TODO fazer os botões de Concluir, Editar e Excluir.
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                      child: Text(
-                        DateFormat('dd/MM').format(data),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ],
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => showFullScreen(context, titulo, descricao, data, icon),
+      child: SizedBox(
+        height: 100,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Color(0xFFFFEFFC),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  offset: Offset(0, 5),
+                  blurRadius: 4.0,
                 ),
               ],
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 100, width: 100, child: Icon(icon, size: 70)),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 10, left: 5),
+                          child: Text(
+                            titulo,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5, left: 5),
+                          child: Text(
+                            descricao,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Text(
+                          DateFormat('dd/MM').format(data),
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
