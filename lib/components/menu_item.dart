@@ -1,4 +1,5 @@
 import 'package:floricultura/screens/login_screen.dart';
+import 'package:floricultura/screens/pedidos_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemModel {
@@ -18,7 +19,7 @@ class MenuItemModel {
     MenuItemModel(
       title: "Home",
       icon: Icons.home,
-      screenBuilder: () => Container(),
+      screenBuilder: () => PedidosScreen(),
     ),
     MenuItemModel(
       title: "pei",
