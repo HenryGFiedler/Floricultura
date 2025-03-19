@@ -8,7 +8,6 @@ class MainButton extends StatelessWidget {
   final double? height;
   final double? fontSize;
   final IconData? icon;
-  final bool isCircle;
 
   const MainButton({
     super.key,
@@ -19,7 +18,6 @@ class MainButton extends StatelessWidget {
     this.height,
     this.fontSize,
     this.icon,
-    this.isCircle = false,
   });
 
   @override
@@ -32,7 +30,7 @@ class MainButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(isCircle ? 100 : 10)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             backgroundColor: color ?? Color(0xfffcafbb),
             foregroundColor: Colors.white,
             textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize ?? 25),
