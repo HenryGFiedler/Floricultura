@@ -36,10 +36,10 @@ class MainButton extends StatelessWidget {
             textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize ?? 25),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (icon != null) Icon(icon, size: 25, color: Colors.white),
-              Text(text ?? ''),
+              Text(text ?? '',textScaler: TextScaler.noScaling),
             ],
           ),
         ),

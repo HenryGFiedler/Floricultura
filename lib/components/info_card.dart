@@ -24,7 +24,6 @@ class InfoCard extends StatelessWidget {
     DateTime data,
     IconData icon,
   ) {
-
     // TODO Fazer com que o layout não exploda depois de aumentar a fonte do emulador
     showDialog(
       context: context,
@@ -54,12 +53,16 @@ class InfoCard extends StatelessWidget {
                               color: Color(0xFFffd9f8),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: SizedBox(height: 150, width: 150, child: Icon(icon, size: 100)),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.1640625,
+                              width: MediaQuery.of(context).size.height * 0.1640625,
+                              child: Icon(icon, size: 100),
+                            ),
                           ),
                           SizedBox(width: 10),
                           Expanded(
                             child: SizedBox(
-                              height: 150,
+                              height: MediaQuery.of(context).size.height * 0.1640625,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +71,8 @@ class InfoCard extends StatelessWidget {
                                     padding: EdgeInsets.only(top: 10, left: 5),
                                     child: Text(
                                       titulo,
-                                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                      textScaler: TextScaler.noScaling,
                                     ),
                                   ),
                                   Align(
@@ -78,6 +82,7 @@ class InfoCard extends StatelessWidget {
                                       child: Text(
                                         DateFormat('dd/MM/yyyy').format(data),
                                         style: TextStyle(fontSize: 25),
+                                        textScaler: TextScaler.noScaling,
                                       ),
                                     ),
                                   ),
@@ -88,14 +93,19 @@ class InfoCard extends StatelessWidget {
                         ],
                       ),
                       Divider(height: 30),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: SingleChildScrollView(
-                            child: Text(
-                              descricao,
-                              style: TextStyle(fontSize: 15, color: Colors.grey.shade800),
+                      Container(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.30,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                descricao,
+                                style: TextStyle(fontSize: 15, color: Colors.grey.shade800),
+                              ),
                             ),
                           ),
                         ),
@@ -111,26 +121,29 @@ class InfoCard extends StatelessWidget {
                               color: Color(0xFF99f59a),
                               fontSize: 20,
                               adaptiveWidth: true,
-                              onPressed: () => {
-                                // TODO Concluir pedido
-                              },
+                              onPressed:
+                                  () => {
+                                    // TODO Concluir pedido
+                                  },
                             ),
                             MainButton(
                               text: 'Editar',
                               color: Color(0xFFffcc74),
                               fontSize: 20,
                               adaptiveWidth: true,
-                              onPressed: () => {
-                                // TODO Editar pedido
-                              },
+                              onPressed:
+                                  () => {
+                                    // TODO Editar pedido
+                                  },
                             ),
                             MainButton(
                               adaptiveWidth: true,
                               icon: Icons.delete,
                               color: Color(0xFFff4f53),
-                              onPressed: () => {
-                                // TODO Excluír pedido
-                              },
+                              onPressed:
+                                  () => {
+                                    // TODO Excluír pedido
+                                  },
                             ),
                           ],
                         ),
