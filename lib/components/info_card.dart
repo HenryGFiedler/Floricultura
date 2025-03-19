@@ -1,3 +1,4 @@
+import 'package:floricultura/components/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,6 +24,8 @@ class InfoCard extends StatelessWidget {
     DateTime data,
     IconData icon,
   ) {
+
+    // TODO Fazer com que o layout não exploda depois de aumentar a fonte do emulador
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -97,12 +100,38 @@ class InfoCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Spacer(),
                       SizedBox(
                         height: 100,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // TODO fazer os botões de Concluir, Editar e Excluir.
+                            MainButton(
+                              text: 'Concluir',
+                              color: Color(0xFF99f59a),
+                              fontSize: 20,
+                              adaptiveWidth: true,
+                              onPressed: () => {
+                                // TODO Concluir pedido
+                              },
+                            ),
+                            MainButton(
+                              text: 'Editar',
+                              color: Color(0xFFffcc74),
+                              fontSize: 20,
+                              adaptiveWidth: true,
+                              onPressed: () => {
+                                // TODO Editar pedido
+                              },
+                            ),
+                            MainButton(
+                              adaptiveWidth: true,
+                              icon: Icons.delete,
+                              color: Color(0xFFff4f53),
+                              onPressed: () => {
+                                // TODO Excluír pedido
+                              },
+                            ),
                           ],
                         ),
                       ),
