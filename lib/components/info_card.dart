@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:floricultura/components/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +25,6 @@ class InfoCard extends StatelessWidget {
     DateTime data,
     IconData icon,
   ) {
-    // TODO Fazer com que o layout não exploda depois de aumentar a fonte do emulador
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -69,20 +69,20 @@ class InfoCard extends StatelessWidget {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(top: 10, left: 5),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       titulo,
+                                      maxLines: 3,
                                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                      textScaler: TextScaler.noScaling,
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Padding(
                                       padding: EdgeInsets.only(right: 5),
-                                      child: Text(
+                                      child: AutoSizeText(
                                         DateFormat('dd/MM/yyyy').format(data),
                                         style: TextStyle(fontSize: 25),
-                                        textScaler: TextScaler.noScaling,
+                                        maxLines: 1,
                                       ),
                                     ),
                                   ),
@@ -111,12 +111,11 @@ class InfoCard extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      SizedBox(
-                        height: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MainButton(
+                      Wrap(
+                        direction: Axis.horizontal,
+                        children: [
+                          IntrinsicWidth(
+                            child: MainButton(
                               text: 'Concluir',
                               color: Color(0xFF99f59a),
                               fontSize: 20,
@@ -126,7 +125,9 @@ class InfoCard extends StatelessWidget {
                                     // TODO Concluir pedido
                                   },
                             ),
-                            MainButton(
+                          ),
+                          IntrinsicWidth(
+                            child: MainButton(
                               text: 'Editar',
                               color: Color(0xFFffcc74),
                               fontSize: 20,
@@ -136,7 +137,9 @@ class InfoCard extends StatelessWidget {
                                     // TODO Editar pedido
                                   },
                             ),
-                            MainButton(
+                          ),
+                          IntrinsicWidth(
+                            child: MainButton(
                               adaptiveWidth: true,
                               icon: Icons.delete,
                               color: Color(0xFFff4f53),
@@ -145,8 +148,8 @@ class InfoCard extends StatelessWidget {
                                     // TODO Excluír pedido
                                   },
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -183,6 +186,7 @@ class InfoCard extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
                 children: [
                   SizedBox(height: 100, width: 100, child: Icon(icon, size: 70)),
                   Expanded(
@@ -210,7 +214,6 @@ class InfoCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(width: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -39,7 +39,7 @@ class MainButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (icon != null) Icon(icon, size: 25, color: Colors.white),
-              Text(text ?? '',textScaler: TextScaler.noScaling),
+              Text(text ?? ''),
             ],
           ),
         ),

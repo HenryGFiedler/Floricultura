@@ -1,5 +1,5 @@
-import 'package:floricultura/screens/login_screen.dart';
 import 'package:floricultura/screens/pedidos_screen.dart';
+import 'package:floricultura/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemModel {
@@ -24,7 +24,7 @@ class MenuItemModel {
     MenuItemModel(
       title: "pei",
       icon: Icons.circle,
-      screenBuilder: () => LoginScreen(),
+      screenBuilder: () => ProfileScreen(),
     ),
   ];
 
