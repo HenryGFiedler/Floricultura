@@ -113,6 +113,7 @@ class InfoCard extends StatelessWidget {
                       Spacer(),
                       Wrap(
                         direction: Axis.horizontal,
+                        alignment: WrapAlignment.center,
                         children: [
                           IntrinsicWidth(
                             child: MainButton(

@@ -6,7 +6,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   final String nome = 'Nome';
-  final String email = 'Email';
+  final String email = 'nome@email.com';
 
   @override
   Widget build(BuildContext context) {

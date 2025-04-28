@@ -22,7 +22,7 @@ class MenuItemModel {
       screenBuilder: () => PedidosScreen(),
     ),
     MenuItemModel(
-      title: "pei",
+      title: "Perfil",
       icon: Icons.circle,
       screenBuilder: () => ProfileScreen(),
     ),
