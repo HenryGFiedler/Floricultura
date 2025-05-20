@@ -20,3 +20,4 @@ O app foi pensado para atender exclusivamente as necessidades internas da floric
 ## 🛠️ Tecnologias Utilizadas
 
 - Flutter com Dart
+- [Figma](https://www.figma.com/design/O0OGCFHKNSjuMYasW7cWfV/App?node-id=0-1&p=f&t=AMviNJpx5U4syWBQ-0)
